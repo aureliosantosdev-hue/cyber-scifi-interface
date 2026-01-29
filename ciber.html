@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCI-FI CORE | PROTOCOL 01</title>
+    <style>
+        :root {
+            --neon-pink: #ff007f;
+            --neon-blue: #00f3ff;
+            --sci-fi-green: #00ff41;
+            --dark-bg: #020408;
+            --border-glow: rgba(0, 243, 255, 0.2);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #a0c4ff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 50%, #1a1a2e 0%, #020408 100%);
+        }
+
+        /* Overlay de HUD Sci-Fi */
+        body::before {
+            content: "COORD: 34.711 / -135.244 | SECTOR: G-09";
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            font-size: 10px;
+            color: var(--neon-blue);
+            letter-spacing: 2px;
+            opacity: 0.5;
+        }
+
+        /* --- HOLOGRAMA SCI-FI (DNA / NÚCLEO) --- */
+        .hologram-wrap {
+            position: absolute;
+            right: 15%;
+            top: 50%;
+            transform: translateY(-50%);
+            perspective: 1000px;
+        }
+
+        .hologram-core {
+            width: 150px;
+            height: 150px;
+            border: 2px solid var(--neon-blue);
+            border-radius: 50%;
+            position: relative;
+            animation: rotate3d 10s infinite linear;
+            transform-style: preserve-3d;
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .hologram-core div {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: 1px solid var(--neon-pink);
+            border-radius: 50%;
+            transform: rotateX(45deg);
+        }
+
+        @keyframes rotate3d {
+            from { transform: rotateY(0deg) rotateX(20deg); }
+            to { transform: rotateY(360deg) rotateX(20deg); }
+        }
+
+        /* --- PAINEL DE CONTROLE (SCI-FI CARD) --- */
+        .container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-left: 10%;
+        }
+
+        .sci-fi-panel {
+            background: rgba(10, 20, 40, 0.8);
+            border-left: 4px solid var(--neon-pink);
+            padding: 40px;
+            width: 450px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
+            box-shadow: -10px 0 30px rgba(255, 0, 127, 0.2);
+        }
+
+        /* Cantoneiras Sci-Fi */
+        .sci-fi-panel::after {
+            content: "";
+            position: absolute;
+            top: 5px; right: 5px;
+            width: 50px; height: 50px;
+            border-top: 2px solid var(--neon-blue);
+            border-right: 2px solid var(--neon-blue);
+        }
+
+        h1 {
+            font-family: 'Courier New', monospace;
+            font-size: 2.5rem;
+            color: white;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .sub-text {
+            color: var(--sci-fi-green);
+            font-size: 12px;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+
+        .data-stream {
+            font-size: 13px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            color: #88aadd;
+        }
+
+        .btn-launch {
+            background: transparent;
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            padding: 15px 30px;
+            margin-top: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .btn-launch:hover {
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        /* Efeito de Scanline Global */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scanlines"></div>
+
+    <div class="container">
+        <section class="sci-fi-panel">
+            <div class="sub-text">RESEARCH FACILITY // NEURA-LINK</div>
+            <h1>Aethra_OS</h1>
+            
+            <div class="data-stream">
+                <p>> MEMORY: STABLE</p>
+                <p>> BIO-SYNTHETIC SYNC: 100%</p>
+            </div>
+
+            <button class="btn-launch">Execute Sequence</button>
+        </section>
+    </div>
+
+    <div class="hologram-wrap">
+        <div class="hologram-core">
+            <div></div>
+            <div style="transform: rotateY(90deg)"></div>
+            <div style="transform: rotateX(90deg)"></div>
+        </div>
+        <p style="color: var(--neon-blue); text-align: center; margin-top: 20px; font-size: 12px; font-family: monospace;">
+            CORE_STABILITY: 94%
+        </p>
+    </div>
+
+</body>
+</html>
